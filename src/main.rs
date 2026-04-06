@@ -11,18 +11,13 @@ fn main() {
     let config = match Config::build(&args) {
         Ok(conf) => conf,
         Err(err) => {
-            println!("Problem parsing arguments: {}", err);
+            eprintln!("Problem parsing arguments: {}", err);
             process::exit(1);
         }
     };
 
-    println!(
-        "Searching for {} in file {}",
-        config.query, config.file_path
-    );
-
     if let Err(e) = run(config) {
-        println!("Application error: {e}");
+        eprintln!("Application error: {e}");
         process::exit(1);
     }
 }
